@@ -1,5 +1,5 @@
 //2.1:Looping a triangle
-	var tri_loop = function() {
+	var triangle_loop = function() {
     word = ''
     for (var i = 0; i < 7; i++) {
   	  console.log(word+='#');
@@ -13,5 +13,15 @@
   		if (i%3 === 0) { word += 'Fizz';}
   		if (i%5 === 0) { word += 'Buzz';}
   		console.log(word || i);
+  	}
+  }
+
+//2.3 Chessboard
+	var chessboard = function() {
+    var size = 8;
+  	for (var i = 0; i < size; i++) {
+  	     row = '# '.repeat(size)
+  	     if (i%2 === 0) {console.log(' ' + row);}
+  	     else console.log(row);
   	}
   }
