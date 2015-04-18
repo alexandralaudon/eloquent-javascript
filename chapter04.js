@@ -108,6 +108,14 @@
 //4.4 Deep Comparison
   function deepEqual(value1, value2) {
     if (value1 === value2) {return true;}
-    if (typeof(value1) == typeof(value2)) {return true;};
+    if (value1 == null || value2 == null) {return false;}
+
+    if (typeof value1 === 'object' || typeof value2 === 'object') {
+      if (Object.keys(value1).length !== Object.keys(value2).length) {return false;}
+      for (var i in value1) {
+        if (!deepEqual(value1[i], value2[i])) {return false;}
+      }
+      return true;
+    }
     return false;
   }
