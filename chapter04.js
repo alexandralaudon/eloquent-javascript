@@ -63,6 +63,45 @@
     return sum;
   }
 
+// This is my third try at 4.1
+  function step_function(start, end, step) {
+    if (step) {return step;}
+    else if (start < end) {return 1;}
+    else {return -1;}
+  }
+
+  function negOrPosCondition(end, step_value) {
+    return (step_value > 0) ? end+1 : end-1;
+  }
+
+  function range(start, end, step) {
+    if (start === end || step === 0) {return NaN;}
+  var map = [];
+    var step_value = step_function(start, end, step);
+    var step_condition = negOrPosCondition(end, step_value);
+
+  // I'm trying to figure out a way to send back a condition so that
+  // I don't need to write two for loops based on the condition.  I
+  // know like I'm so close, I just can't seem to find out how to send
+  // back a function that includes a conditional like (i > || < step_condition).
+    for (var i = start ; i > step_condition; i += step_value){
+      map.push(i);
+    }
+    for (var i = start ; i < step_condition; i += step_value) {
+      map.push(i);
+    }
+    return map;
+  }
+
+  function sum(range){
+    var total = 0;
+    for (var i = 0 ; i < range.length ; i++){
+      total += range[i];
+    }
+    return total;
+  }
+
+
 // 4.2 Reversing an Array
 // I would argue that reverseArrayInPlace takes a shorter time because the for loop only iterates
 // half the time compared to reverseArray, which iterates through all elements in an array.
