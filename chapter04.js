@@ -88,22 +88,34 @@
   }
 
 //4.3 A List
-  function arrayToList(numbers_array) {
-    var list = {};
-    var value = "value";
-    var rest = "rest";
+  function prepend(value, rest){
+    return {value: value, rest: rest};
+  }
 
-    if (numbers_array.length > 1) {
-      for (var i = numbers_array.length; i > 1; i--) {
-        list[value] = numbers_array.shift();
-        list[rest] = arrayToList(numbers_array);
-      }
-    } else {
-      list[value] = numbers_array.shift();
-      list[rest] = null;
+  function arrayToList(numbers_array) {
+    var list = prepend(numbers_array.pop(), null);
+    for(var i = 0; i < numbers_array.length+1; i++) {
+      list = prepend(numbers_array.pop(),list);
     }
     return list;
   }
+
+  function listToArray(list){
+    var arr = [];
+    while (list !== null){
+      arr.push(list.value);
+      list = list.rest;
+    }
+    return arr;
+  }
+
+  function nth(list,num){
+    for(var i = 0; i !== num; i++) {
+      list = list.rest;
+    }
+    return list.value;
+  }
+
 
 //4.4 Deep Comparison
   function deepEqual(value1, value2) {
