@@ -37,6 +37,7 @@
     var map = [];
     var step_value = step_function(start, end, step);
 
+    // the other if statement could be (step_value >=0, depending on how we structure other potential parameters)
     if (start < end) {
       for (var i = start ; i < (end+1); i += step_value) {
         map.push(i);
@@ -84,4 +85,29 @@
       same_array[swap_back_index] = swap_back;
     }
     return same_array;
+  }
+
+//4.3 A List
+  function arrayToList(numbers_array) {
+    var list = {};
+    var value = "value";
+    var rest = "rest";
+
+    if (numbers_array.length > 1) {
+      for (var i = numbers_array.length; i > 1; i--) {
+        list[value] = numbers_array.shift();
+        list[rest] = arrayToList(numbers_array);
+      }
+    } else {
+      list[value] = numbers_array.shift();
+      list[rest] = null;
+    }
+    return list;
+  }
+
+//4.4 Deep Comparison
+  function deepEqual(value1, value2) {
+    if (value1 === value2) {return true;}
+    if (typeof(value1) == typeof(value2)) {return true;};
+    return false;
   }
