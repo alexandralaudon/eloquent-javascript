@@ -64,9 +64,8 @@
   }
 
 // 4.2 Reversing an Array
-// I would argue reverseArray is faster because you only check the fwd_array.length
-// once when you declare i.  The other way (that I initially tried) required a
-// check every time you loop.
+// I would argue that reverseArrayInPlace takes a shorter time because the for loop only iterates
+// half the time compared to reverseArray, which iterates through all elements in an array.
   function reverseArray(fwd_array) {
     backwards_array = [];
     for (var i = fwd_array.length-1 ; i >= 0 ; i--) {
