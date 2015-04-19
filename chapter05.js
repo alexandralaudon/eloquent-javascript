@@ -28,7 +28,44 @@
        var short_term = ageDifference(ancestry[i]);
        if (short_term !== undefined) {ageArray.push(short_term);}
     }
-    return average(ageArray);
+    return Math.round(average(ageArray)*10)/10;
   }
 
   console.log(motherAgeArray());
+
+//5.3 Historical Life Expectancy
+
+  function average(array) {
+    function plus(a, b) { return a + b; }
+    var averageNum = array.reduce(plus) / array.length;
+    return Math.round(averageNum*10)/10;
+  }
+
+  // Your code here.
+  function age(person){
+    return person.died - person.born;
+  }
+
+  function groupBy(centuries, century, age) {
+    if (centuries.hasOwnProperty(century)) {
+      centuries[century].push(age);
+    } else {
+      centuries[century] = [age];
+    }
+  }
+
+  function ancestryCentury(){
+    var centuriesAll = {};
+    var centuriesAvg = {};
+    for (var i = 0 ; i < ancestry.length ; i++){
+      var century = Math.ceil(ancestry[i].died/100);
+      groupBy(centuriesAll, century, age(ancestry[i]));
+    }
+
+    for (properties in centuriesAll) {
+       centuriesAvg[properties] = average(centuriesAll[properties]);
+    }
+    return centuriesAvg;
+  }
+
+  console.log(ancestryCentury());
