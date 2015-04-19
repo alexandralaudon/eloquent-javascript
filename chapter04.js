@@ -76,19 +76,21 @@
 
   function range(start, end, step) {
     if (start === end || step === 0) {return NaN;}
-  var map = [];
+    var map = [];
     var step_value = step_function(start, end, step);
     var step_condition = negOrPosCondition(end, step_value);
+    var i = start;
 
-  // I'm trying to figure out a way to send back a condition so that
-  // I don't need to write two for loops based on the condition.  I
-  // know like I'm so close, I just can't seem to find out how to send
-  // back a function that includes a conditional like (i > || < step_condition).
-    for (var i = start ; i > step_condition; i += step_value){
-      map.push(i);
-    }
-    for (var i = start ; i < step_condition; i += step_value) {
-      map.push(i);
+    if (step_value > 0) {
+      while (i < step_condition){
+        map.push(i);
+        i+= step_value;
+      }
+    }else {
+      while(i > step_condition){
+        map.push(i);
+        i+= step_value;
+      }
     }
     return map;
   }
