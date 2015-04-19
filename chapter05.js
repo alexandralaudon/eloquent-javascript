@@ -69,3 +69,19 @@
   }
 
   console.log(ancestryCentury());
+
+
+//5.4 Every and Then Some
+  function some(array, evaluation){
+    for(var i = 0; i < array.length; i++){
+      if (evaluation(array[i])) {return true;}
+    }
+    return false;
+  }
+
+  function every(array, evaluation){
+    for(var i = 0; i < array.length; i++){
+      if (!evaluation(array[i])) {return false;}
+    }
+    return true;
+  }
