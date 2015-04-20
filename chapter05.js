@@ -17,19 +17,19 @@
   });
 
   // Your code here.
-  function ageDifference(person){
+  var ageDifference = function(person){
     if (byName[person.mother] == undefined) {return undefined;}
     return Math.abs(person.born - byName[person.mother].born);
-  }
+  };
 
-  function motherAgeArray(){
+  var motherAgeArray = function(){
     var ageArray = [];
     for (var i = 0; i < ancestry.length; i++){
        var short_term = ageDifference(ancestry[i]);
        if (short_term !== undefined) {ageArray.push(short_term);}
     }
     return Math.round(average(ageArray)*10)/10;
-  }
+  };
 
   console.log(motherAgeArray());
 
@@ -42,19 +42,19 @@
   }
 
   // Your code here.
-  function age(person){
+  var age = function(person){
     return person.died - person.born;
-  }
+  };
 
-  function groupBy(centuries, century, age) {
+  var groupBy = function(centuries, century, age) {
     if (centuries.hasOwnProperty(century)) {
       centuries[century].push(age);
     } else {
       centuries[century] = [age];
     }
-  }
+  };
 
-  function ancestryCentury(){
+  var ancestryCentury = function(){
     var centuriesAll = {};
     var centuriesAvg = {};
     for (var i = 0 ; i < ancestry.length ; i++){
@@ -66,22 +66,22 @@
        centuriesAvg[properties] = average(centuriesAll[properties]);
     }
     return centuriesAvg;
-  }
+  };
 
   console.log(ancestryCentury());
 
 
 //5.4 Every and Then Some
-  function some(array, evaluation){
+  var some = function(array, evaluation){
     for(var i = 0; i < array.length; i++){
       if (evaluation(array[i])) {return true;}
     }
     return false;
-  }
+  };
 
-  function every(array, evaluation){
+  var every = function(array, evaluation){
     for(var i = 0; i < array.length; i++){
       if (!evaluation(array[i])) {return false;}
     }
     return true;
-  }
+  };
