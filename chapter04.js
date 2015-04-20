@@ -107,15 +107,15 @@
 // 4.2 Reversing an Array
 // I would argue that reverseArrayInPlace takes a shorter time because the for loop only iterates
 // half the time compared to reverseArray, which iterates through all elements in an array.
-  function reverseArray(fwd_array) {
+  var reverseArray = function(fwd_array) {
     backwards_array = [];
     for (var i = fwd_array.length-1 ; i >= 0 ; i--) {
       backwards_array.push(fwd_array[i]);
     }
     return backwards_array;
-  }
+  };
 
-  function reverseArrayInPlace(same_array) {
+  var reverseArrayInPlace = function(same_array) {
     for (i = 0; i < Math.floor(same_array.length/2); i++) {
       var swap_back = same_array[i];
       var swap_back_index = same_array.length-(i+1);
@@ -125,36 +125,48 @@
       same_array[swap_back_index] = swap_back;
     }
     return same_array;
-  }
+  };
+
+  console.log(reverseArray(["A", "B", "C"]));
+  // → ["C", "B", "A"];
+  var arrayValue = [1, 2, 3, 4, 5];
+  reverseArrayInPlace(arrayValue);
+  console.log(arrayValue);
+  // → [5, 4, 3, 2, 1]
 
 //4.3 A List
-  function prepend(value, rest){
+  var prepend = function(value, rest){
     return {value: value, rest: rest};
-  }
+  };
 
-  function arrayToList(numbers_array) {
+  var arrayToList = function(numbers_array) {
     var list = prepend(numbers_array.pop(), null);
     for(var i = 0; i < numbers_array.length+1; i++) {
       list = prepend(numbers_array.pop(),list);
     }
     return list;
-  }
+  };
 
-  function listToArray(list){
+  var listToArray = function(list){
     var arr = [];
     while (list !== null){
       arr.push(list.value);
       list = list.rest;
     }
     return arr;
-  }
+  };
 
-  function nth(list,num){
+  var nth = function(list,num){
     for(var i = 0; i !== num; i++) {
       list = list.rest;
     }
     return list.value;
-  }
+  };
+
+  console.log(arrayToList([10, 20]));
+  console.log(listToArray(arrayToList([10, 20, 30])));
+  console.log(prepend(10, prepend(20, null)));
+  console.log(nth(arrayToList([10, 20, 30]), 1));
 
 
 //4.4 Deep Comparison
@@ -171,3 +183,8 @@
     }
     return false;
   }
+
+  var obj = {here: {is: "an"}, object: 2};
+  console.log(deepEqual(obj, obj));
+  console.log(deepEqual(obj, {here: 1, object: 2}));
+  console.log(deepEqual(obj, {here: {is: "an"}, object: 2}));
