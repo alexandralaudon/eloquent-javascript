@@ -141,7 +141,7 @@
 
   var arrayToList = function(numbers_array) {
     var list = prepend(numbers_array.pop(), null);
-    for(var i = 0; i < numbers_array.length+1; i++) {
+    for(var i = 0; i <= numbers_array.length; i++) {
       list = prepend(numbers_array.pop(),list);
     }
     return list;
