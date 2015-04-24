@@ -1,6 +1,6 @@
 //A vector type
 
-function Vector(x,y) {
+var Vector = function(x,y) {
   this.x = x;
   this.y = y;
 }
