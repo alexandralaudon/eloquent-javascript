@@ -9,7 +9,7 @@
 
 //3.2 Recursion:
   function isEven(num) {
-    if (num < 0) {return "??";}
+    if (num < 0) {num = num*-1;}
     if (num < 2) {return (num === 0);}
     return isEven(num-2);
   }
