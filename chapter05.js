@@ -34,14 +34,13 @@
   console.log(motherAgeArray());
 
 //5.3 Historical Life Expectancy
+  var ancestry = JSON.parse(ANCESTRY_FILE);
 
   function average(array) {
     function plus(a, b) { return a + b; }
-    var averageNum = array.reduce(plus) / array.length;
-    return Math.round(averageNum*10)/10;
+      return Math.round((array.reduce(plus) / array.length)*10)/10;
   }
 
-  // Your code here.
   var age = function(person){
     return person.died - person.born;
   };
@@ -54,18 +53,21 @@
     }
   };
 
+  var avgCenturies = function(centeriesArray){
+    centeriesAvg = {};
+    for (var properties in centeriesArray) {
+      centuriesAvg[properties] = average(centuriesAll[properties]);
+    }
+    return centeriesAvg;
+  };
+
   var ancestryCentury = function(){
     var centuriesAll = {};
-    var centuriesAvg = {};
     for (var i = 0 ; i < ancestry.length ; i++){
       var century = Math.ceil(ancestry[i].died/100);
       groupBy(centuriesAll, century, age(ancestry[i]));
     }
-
-    for (properties in centuriesAll) {
-       centuriesAvg[properties] = average(centuriesAll[properties]);
-    }
-    return centuriesAvg;
+    return avgCenturies(centuriesAll);
   };
 
   console.log(ancestryCentury());
